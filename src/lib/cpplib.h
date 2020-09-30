@@ -7,6 +7,7 @@
 #include <set>
 #include <unordered_map>
 #include <iostream>
+#include <stack>
 
 using namespace std;
 /**
@@ -16,6 +17,8 @@ class CPPLib {
  public:
   //q2
   std::set<std::set<int>> twoSum(std::vector<int>& input, int sum);
+    //q6
+    bool CheckValidExpression(const std::string& str);
 
 };
 
@@ -53,18 +56,13 @@ public:
 
   void pop_back();//remove the last item
 
-  // back() and front() are optional now
-  // int back();//returns the value of last item
-
-  // int front();//returns the value of first item
-
   ListNode* GetBackPointer();//returns the pointer to the last item
 
   ListNode* GetIthPointer(int i);//returns pointer to ith element
+    
+    void reverse();
 
   void print();//prints the list: ex. Empty list: { }. List with Items: {1, 2, 3}
- 
-  void reverse(); // reverse the linked list in-place
 
   ListNode *head_;//Pointer to the first element
 
@@ -77,7 +75,6 @@ public:
     int* id;
     Student_shallow();
     Student_shallow(int);
-    ~Student_shallow();
 };
 class Student_deep
 {
@@ -98,12 +95,18 @@ class Complex{
   Complex():real(0), ima(0){};
   // default destructor
   ~Complex();
+    
   // implement constructor that takes 2 numbers as input parameters
-  
+    Complex(float i, float j);
+
   // implement a copy constructor
+    Complex(const Complex &s);
 
   // implement an assignment operator
 
+    Complex& operator=(const Complex&);
+    
+    
   // define real and imaginary part
   float real;
   float ima;
@@ -111,19 +114,26 @@ class Complex{
   // below here, we assume complex1, complex2 are instances of Complex.
   // define your functions to enable operator overloadings.
 
-
   //q5_1 complex++
+    
+    Complex operator++(int dummy);
 
   //q5_2 --complex
+    Complex& operator--();
 
   //q5_3 complex1 > complex2
+    bool operator>(const Complex &a)const;
 
   //q5_4 complex * (an float number)
-
+    Complex operator*(float a);
+    
   //q5_5 complex1 += complex2
+    Complex operator+=(Complex b);
+
 
   //q5_6 complex2 += (an float number)
-  
+    Complex operator+=(float b);
+    
 };
 
 #endif

@@ -20,6 +20,29 @@ Please compare pros and cons of the following options:
 Please mention when each item is preferred.
 
 Answer:
+1
+Pass by value will make a copy of the variable, and make change of this new copy will not change the original variable.
+Pros: it will keep the original value
+Cons: Make a copy sometimes takes a long time, and casue penalty
+Used when we don't want to change the original variable
+
+2
+Pass by pointers will not make a copy of the variable, so changes the new variable is equal to change the original variable
+Pros: It avoids making a copy,
+Cons: It will change the original variable, which is not desired all the time
+Used when we want to change the original variable, and we might need to point to NULL at the beginning
+
+3
+Pass by reference will not make a copy of the variable, so changes the new variable is eqal to change the original variable's value
+Pros: it avoids making a copy
+ConsL It will change the original variable, which is not desired all the time
+
+
+4
+Pass by const reference will not make a copy of the variable, and it makes the function's variable const type, so the original variable cannot be changed.
+Pros: it avoids making a copy, and it avoids changing the original variable
+Cons: It will not create a copy.
+Used when we don't want to copy, but we also don't want to change the original variable
 
 ## Question 2 (20 Points. Easy)
 
@@ -44,6 +67,16 @@ bazel test tests:q2_student_test
 Please compute the time complexity of your implementation.
 
 Answer:
+Firstly, we initialized two empty set, which take O(1).
+The first loop will run n times for n input, the second loop will also run n times.
+In the worst case, all the inputs will be inserted to the tree.
+
+Becasue set has O(lgn) insert time. But in each subset "AddValue", we only have two elements, which only takes constant insert time O(1).
+However, to insert each subset "AddValue" to the final set "Output" requires O(lgn) in worst case, since at most we have O(n/2) subset.
+
+After insert to final set, we erase the two elements in the subset, which takes O(1) constant time.
+
+In total, the time complexity is O(n2lgn)
 
 ## Question 3 (50 Points. Medium)
 
@@ -99,7 +132,7 @@ public:
 
 You can assume that the Linked List is **acyclic** except for the constructor ```SinglyLinkedList(vector<int> &input, int i);```.
 
-All functions except for print()/constructor/destructor require a GTest.
+All functions except for print() require a GTest.
 
 Write several tests using GTest for your function in [tests/q3_student_test.cc](tests/q3_student_test.cc).
 
@@ -111,6 +144,41 @@ bazel test tests:q3_student_test
 Please compute the time complexity of your implementation.
 
 Answer:
+
+Default Constructor: O(1), since we only assign head_
+
+Parameter Constructor, O(n). The for loop runs for O(n), inside the for loop, we use pointer to reach next node, which takes O(1). However, if we create the acyclic list, the Get ith pointer function requires O(n) run time, so the total would be O(n2) in the worst case.
+
+Destructor: takes O(n), the while loop runs O(n) times, since we need to delete all the nodes. 
+
+Empty: takes O(1), since we only look at the value of head_
+
+Size: takes O(n), since the while loop will run O(n) to traverse all the nodes.
+
+Push_back: takes O(n), since a while loop is used to find the last item inside the linked list. All other operations are simply delete some connections and add new pointer connections, which take O(n).
+
+Push_front: takes O(1), since all the operations here are simply connections add or delete.
+
+Insert_after: takes O(1), the codes are adding and deleting connections between node, no loop is used.
+
+Erase: takes O(n) in the worst case when the erase pointer is the last one. A while loop is used to find the node before the target node. 
+
+Pop_front: takes O(1), we just create some new connections between nodes.
+
+Pop_back: takes O(n), a while loop is used to find both the last node, and the node before last node.
+
+GetBackPointer: takes O(n), a while loop is used to traverse from the head to the tail node.
+
+GetIthPointer: takes O(n) in the worst case, when the ith pointer is the last pointer of the list. In this case, we need to traverse the whole list, which takes O(n).
+
+Reverse: takes O(n), two while loops are used independantly, and each takes O(n) to get the value of all nodes, and put them into a vector, which takes O(n).
+
+Print: takes O(n), since we need to get all the nodes' value and print them. So we need to access each node, which takes O(n).
+
+
+
+
+
 
 ## Question 4 (10 Points. Easy)
 
@@ -267,6 +335,14 @@ bazel test tests:q6_student_test
 Please compute the time complexity of your implementation.
 
 Answer:
+
+Firstly, a for loop is used and it will iterate n times to go through all the lements in the string.
+Inside the for loop, we have stack push and pop operation, both of them take O(1) to complete. Besides, we have normal value assignment, which takes O(1) as well.
+
+So, the total run time complexity is O(n).
+
+
+
 ## Optional Question
 
 The goal of this section is to introduce you to more challenging questions and some common problems in coding and algorithms.
